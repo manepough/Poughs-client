@@ -5,22 +5,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-
       - name: Organize files
         run: |
           mkdir -p app/src/main/java/com/bglauncher
           mkdir -p app/src/main/res/layout
           mkdir -p app/src/main/res/drawable
           mkdir -p app/src/main/res/values
-          mv AndroidManifest.xml app/src/main//
+          mv AndroidManifest.xml app/src/main/
           mv MainActivity.java app/src/main/java/com/bglauncher/
           mv OverlayService.java app/src/main/java/com/bglauncher/
           mv activity_main.xml app/src/main/res/layout/
@@ -32,17 +29,28 @@ jobs:
           mv log_bg.xml app/src/main/res/drawable/
           mv ic_launcher.xml app/src/main/res/drawable/
           mv styles.xml app/src/main/res/values/
-
+          cat > app/build.gradle << 'EOF'
+          apply plugin: 'com.android.application'
+          android {
+            namespace 'com.bglauncher'
+            compileSdk 34
+            defaultConfig {
+              applicationId "com.bglauncher"
+              minSdk 26
+              targetSdk 34
+              versionCode 1
+              versionName "1.0"
+            }
+          }
+          EOF
       - name: Install Gradle and generate wrapper
         run: |
-          wget https://services.gradle.org/distributions/gradle-8.1.1-bin.zip
+          wget -q https://services.gradle.org/distributions/gradle-8.1.1-bin.zip
           unzip -q gradle-8.1.1-bin.zip
           ./gradle-8.1.1/bin/gradle wrapper
           chmod +x gradlew
-
       - name: Build APK
         run: ./gradlew assembleDebug --no-daemon
-
       - uses: actions/upload-artifact@v4
         with:
           name: BlockmanGo-APK
