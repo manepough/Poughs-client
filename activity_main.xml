@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0a0d12"
+    android:gravity="center">
+
+    <!-- Logo / Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🟧"
+        android:textSize="64sp"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BG TOOLKIT"
+        android:textColor="#00d4ff"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.2"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blockman Go Launcher + Hitbox Panel"
+        android:textColor="#6b7fa8"
+        android:textSize="13sp"
+        android:layout_marginBottom="48dp"/>
+
+    <!-- Launch button -->
+    <Button
+        android:id="@+id/btnLaunchBlockman"
+        android:layout_width="260dp"
+        android:layout_height="64dp"
+        android:text="▶  LAUNCH BLOCKMAN GO"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:backgroundTint="#ff6b00"
+        android:stateListAnimator="@null"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="After launch, tap the 🟧 bubble to open the Hitbox Panel"
+        android:textColor="#6b7fa8"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"/>
+
+</LinearLayout>
