@@ -11,19 +11,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - uses: gradle/actions/setup-gradle@v3
-
-      - name: Download wrapper jar
+      - name: Install Gradle
         run: |
-          mkdir -p gradle/wrapper
-          wget -O gradle/wrapper/gradle-wrapper.jar \
-          https://github.com/gradle/gradle/raw/v8.0.0/gradle/wrapper/gradle-wrapper.jar
-
-      - name: Fix permissions
-        run: chmod 755 gradlew
+          wget https://services.gradle.org/distributions/gradle-8.0-bin.zip
+          unzip gradle-8.0-bin.zip
+          export PATH=$PATH:$(pwd)/gradle-8.0/bin
 
       - name: Build APK
-        run: bash gradlew assembleDebug --no-daemon
+        run: |
+          export PATH=$PATH:$(pwd)/gradle-8.0/bin
+          gradle assembleDebug --no-daemon
 
       - uses: actions/upload-artifact@v4
         with:
