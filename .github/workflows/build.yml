@@ -11,6 +11,27 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Organize files
+        run: |
+          mkdir -p app/src/main/java/com/bglauncher
+          mkdir -p app/src/main/res/layout
+          mkdir -p app/src/main/res/drawable
+          mkdir -p app/src/main/res/values
+          mkdir -p gradle/wrapper
+          mv AndroidManifest.xml app/src/main/
+          mv MainActivity.java app/src/main/java/com/bglauncher/
+          mv OverlayService.java app/src/main/java/com/bglauncher/
+          mv activity_main.xml app/src/main/res/layout/
+          mv overlay_bubble.xml app/src/main/res/layout/
+          mv overlay_panel.xml app/src/main/res/layout/
+          mv bubble_bg.xml app/src/main/res/drawable/
+          mv panel_bg.xml app/src/main/res/drawable/
+          mv input_bg.xml app/src/main/res/drawable/
+          mv log_bg.xml app/src/main/res/drawable/
+          mv ic_launcher.xml app/src/main/res/drawable/
+          mv styles.xml app/src/main/res/values/
+          wget -O gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v8.0.0/gradle/wrapper/gradle-wrapper.jar
+
       - name: Install Gradle
         run: |
           wget https://services.gradle.org/distributions/gradle-8.0-bin.zip
